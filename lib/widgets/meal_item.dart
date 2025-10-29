@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatefulWidget {
   const MealItem({super.key, required this.meal});
+
   final Meal meal;
+
+  String get complexityText {
+    return meal.complexity.name[0].toUpperCase() + meal.complexity.name.substring(1);
+  }
+
+  String get affordabilityText {
+    return meal.affordability.name[0].toUpperCase() + meal.affordability.name.substring(1);
+  }
 
   @override
   State<MealItem> createState() => _MealItemState();
@@ -15,7 +25,8 @@ class _MealItemState extends State<MealItem> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(8),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.circular(8),
       ),
       clipBehavior: Clip.hardEdge,
       elevation: 2,
@@ -57,6 +68,22 @@ class _MealItemState extends State<MealItem> {
                     const SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MealItemTrait(
+                          icon: Icons.schedule,
+                          label: '${widget.meal.duration} min',
+                        ),
+                        const SizedBox(width: 6),
+                        MealItemTrait(
+                          icon: Icons.work,
+                          label: widget.complexityText,
+                        ),
+                        const SizedBox(width: 6),
+                        MealItemTrait(
+                          icon: Icons.schedule,
+                          label: widget.affordabilityText,
+                        ),
+                      ],
                     ),
                   ],
                 ),
