@@ -4,7 +4,6 @@ import 'package:meals/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatefulWidget {
-  
   const MealItem({super.key, required this.meal, required this.onSelectMeal});
 
   final Meal meal;
