@@ -27,7 +27,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       lowerBound: 0,
       upperBound: 1,
     );
-    
+
     _animationController.forward();
   }
 
@@ -44,10 +44,8 @@ class _CategoriesScreenState extends State<CategoriesScreen>
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (ctx) => MealsScreen(
-          title: category.title,
-          meals: filteredMeals,
-        ),
+        builder: (ctx) =>
+            MealsScreen(title: category.title, meals: filteredMeals),
       ),
     );
   }
@@ -58,23 +56,32 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       animation: _animationController,
       builder: (context, child) => Padding(
         padding: EdgeInsets.only(top: 100 - _animationController.value * 100),
-        child: GridView(
-          padding: const EdgeInsets.all(24),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20,
-          ),
-          children: [
-            for (final category in availableCategories)
-              CategoryGridItem(
-                category: category,
-                onSelectCategory: () {
-                  _selectCategory(context, category);
-                },
+        child: SlideTransition(
+          position: Tween(begin: const Offset(0, 0.3), end: const Offset(0, 0))
+              .animate(
+                CurvedAnimation(
+                  parent: _animationController,
+                  curve: Curves.easeInOut,
+                ),
               ),
-          ],
+          child: GridView(
+            padding: const EdgeInsets.all(24),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 3 / 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+            ),
+            children: [
+              for (final category in availableCategories)
+                CategoryGridItem(
+                  category: category,
+                  onSelectCategory: () {
+                    _selectCategory(context, category);
+                  },
+                ),
+            ],
+          ),
         ),
       ),
     );
