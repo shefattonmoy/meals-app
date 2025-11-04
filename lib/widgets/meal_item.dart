@@ -29,9 +29,7 @@ class _MealItemState extends State<MealItem> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(8),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
@@ -40,12 +38,15 @@ class _MealItemState extends State<MealItem> {
         },
         child: Stack(
           children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(widget.meal.imageUrl),
-              fit: BoxFit.cover,
-              height: 200,
-              width: double.infinity,
+            Hero(
+              tag: widget.meal.id,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(widget.meal.imageUrl),
+                fit: BoxFit.cover,
+                height: 200,
+                width: double.infinity,
+              ),
             ),
             Positioned(
               bottom: 0,
@@ -86,7 +87,7 @@ class _MealItemState extends State<MealItem> {
                         ),
                         const SizedBox(width: 6),
                         MealItemTrait(
-                          icon: Icons.schedule,
+                          icon: Icons.attach_money,
                           label: widget.affordabilityText,
                         ),
                       ],

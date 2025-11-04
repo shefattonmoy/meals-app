@@ -20,6 +20,7 @@ class FavoriteMealsNotifier extends Notifier<List<Meal>> {
   }
 }
 
-final favoriteMealsProvider = NotifierProvider<FavoriteMealsNotifier, List<Meal>>(
-  FavoriteMealsNotifier.new,
-);
+final favoriteMealsProvider =
+    NotifierProvider<FavoriteMealsNotifier, List<Meal>>(
+      FavoriteMealsNotifier.new,
+    );

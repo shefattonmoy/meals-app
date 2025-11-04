@@ -8,22 +8,22 @@ class FiltersScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeFilters = ref.watch(filtersProvider);
-    
+
     final glutenFreeFilterState = activeFilters[Filter.glutenFree]!;
     final lactoseFreeFilterState = activeFilters[Filter.lactoseFree]!;
     final vegetarianFilterState = activeFilters[Filter.vegetarian]!;
     final veganFilterState = activeFilters[Filter.vegan]!;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Your filters'),
-      ),
+      appBar: AppBar(title: const Text('Your filters')),
       body: Column(
         children: [
           SwitchListTile(
             value: glutenFreeFilterState,
             onChanged: (isChecked) {
-              ref.read(filtersProvider.notifier).setFilter(Filter.glutenFree, isChecked);
+              ref
+                  .read(filtersProvider.notifier)
+                  .setFilter(Filter.glutenFree, isChecked);
             },
             title: Text(
               'Gluten-free',
@@ -43,7 +43,9 @@ class FiltersScreen extends ConsumerWidget {
           SwitchListTile(
             value: lactoseFreeFilterState,
             onChanged: (isChecked) {
-              ref.read(filtersProvider.notifier).setFilter(Filter.lactoseFree, isChecked);
+              ref
+                  .read(filtersProvider.notifier)
+                  .setFilter(Filter.lactoseFree, isChecked);
             },
             title: Text(
               'Lactose-free',
@@ -63,7 +65,9 @@ class FiltersScreen extends ConsumerWidget {
           SwitchListTile(
             value: vegetarianFilterState,
             onChanged: (isChecked) {
-              ref.read(filtersProvider.notifier).setFilter(Filter.vegetarian, isChecked);
+              ref
+                  .read(filtersProvider.notifier)
+                  .setFilter(Filter.vegetarian, isChecked);
             },
             title: Text(
               'Vegetarian',
@@ -83,7 +87,9 @@ class FiltersScreen extends ConsumerWidget {
           SwitchListTile(
             value: veganFilterState,
             onChanged: (isChecked) {
-              ref.read(filtersProvider.notifier).setFilter(Filter.vegan, isChecked);
+              ref
+                  .read(filtersProvider.notifier)
+                  .setFilter(Filter.vegan, isChecked);
             },
             title: Text(
               'Vegan',
